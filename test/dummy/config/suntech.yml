@@ -1,0 +1,12 @@
+test: &default
+  web_atm_id: S1512089028
+  buy_safe_id: S1512089010
+  twentyfour_id: S1512089036
+  pay_code_id: S1512089000
+  ali_pay_id: S1512089001
+  transaction_code: Coool111
+  mode: sandbox
+  endpoint: https://test.esafe.com.tw/Service/Etopm.aspx
+
+development:
+  <<: *default
