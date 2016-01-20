@@ -17,6 +17,10 @@ module SuntechRails
         Digest::SHA1.hexdigest("#{@web}#{SuntechRails::Core::Config.config.transaction_code}#{@MN}").upcase
       end
 
+      def self.check_chkvalue?(params)
+        Digest::SHA1.hexdigest("#{params["web"]}#{SuntechRails::Core::Config.config.transaction_code}#{params["buysafeno"]}#{params["MN"]}#{params["errcode"]}").upcase == params["ChkValue"]
+      end
+
       def merge!(options, &block)
         if options.is_a? Hash
           options.each do |key, value|
@@ -39,6 +43,19 @@ module SuntechRails
         SuntechRails.logger.warn error.message
       rescue TypeError, ArgumentError => error
         raise TypeError, "#{error.message}(#{value.inspect}) for #{self.class.name}.#{key} member"
+      end
+
+      def self.success?(params)
+        params["errcode"] == "00"
+      end
+
+      def self.check(params)
+       
+        if SuntechRails::Core::Config.config.buy_safe_id == params["web"] && check_chkvalue?(params)
+          return params
+        else
+          return nil
+        end
       end
 
     end
