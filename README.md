@@ -12,9 +12,11 @@
 <img src="https://dl.dropboxusercontent.com/u/22307926/open_source_image/suntech_rails/apply_for_api.png">
 
 * 交易回傳網址是否已經設定好
+
 <img src="https://dl.dropboxusercontent.com/u/22307926/open_source_image/suntech_rails/transaction_callback_setting.png">
 
 * 交易密碼是否已設定好
+
 <img src="https://dl.dropboxusercontent.com/u/22307926/open_source_image/suntech_rails/transaction_code.png">
 
 * 新增檔案**config/suntech.yml**
@@ -32,6 +34,12 @@ production: &default
 ```
 
 ## 如何使用
+
+### 0. Gemfile
+
+```
+gem "suntech_rails", '~>0.0.2'
+```
 
 ### 1. **config/application.rb**
 
@@ -59,7 +67,7 @@ resources :buysafes do
 end
 ```
 
-### 2. Controller
+### 3. Controller
 
 假設你要串接的controller為 **app/controllers/buysafes_controller.rb**
 
@@ -102,7 +110,7 @@ end
   end
 ```
 
-### 3. View
+### 4. View
 
 * 假設你是使用received當作接收確認的action，依據文件指出你只需要給他0000，所以view很單純就寫成
 
@@ -117,5 +125,12 @@ end
 ```
 = build_post_form @payment
 ``` 
+
+### TODO
+
+* WebATM
+* 24Pay
+* Paycode
+* AliPay
 
 This project rocks and uses MIT-LICENSE.
